@@ -1,0 +1,241 @@
+\documentclass[oneside,12pt,a4paper]{memoir}
+
+%----------------------------------------------------------------------%
+%packages
+\usepackage{geometry}
+\usepackage[square,numbers]{natbib}
+\usepackage[dvipsnames, svgnames, x11names]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{mathrsfs}
+\usepackage{varwidth}
+\usepackage[most]{tcolorbox}
+\usepackage{boondox-cal}
+\usepackage[pages=some]{background}
+\usepackage[colorlinks,
+            linkcolor=red,
+            anchorcolor=blue,
+            citecolor=blue
+            ]{hyperref}
+
+%----------------------------------------------------------------------%
+%settings
+\tcbuselibrary{breakable}
+\tcbuselibrary{theorems}
+\allowdisplaybreaks
+
+\setcounter{secnumdepth}{2}
+
+\geometry{a4paper,centering}
+\geometry{left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}
+
+%----------------------------------------------------------------------%
+%define colors
+\definecolor{Boxtitlecolor}{HTML}{778FD2}
+
+%----------------------------------------------------------------------%
+%newcommands
+
+%remark
+\theoremstyle{definition}
+\newtheorem*{remark}{\textcolor{violet}{$\mathcal{Remark}$}}
+
+%background
+\newcommand\BackImage[2][scale=1]{
+\BgThispage
+\backgroundsetup{
+    scale=1,
+    color=black,
+    opacity=0.7,
+    angle=0,
+    contents={%
+    \includegraphics[#1]{#2}
+    }%
+    }
+}
+
+% insert image in part page
+\makeatletter
+\def\@partimage{}
+\newcommand{\partimage}[2][]{\gdef\@partimage{\includegraphics[#1]{#2}}}
+\renewcommand{\printparttitle}[1]{\parttitlefont #1\vfil\@partimage\vfil\gdef  \@partimage{}}
+\makeatother
+
+%----------------------------------------------------------------------%
+%new enviroments
+%speciesbox
+\newtcolorbox{species}[1][]{enhanced,
+before skip=2mm,after skip=2mm,enlarge top by=10pt, enlarge bottom by=10pt,
+colback=gray!10,colframe=black!50,boxrule=0.5pt,breakable,
+attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+varwidth boxed title*=-3cm,
+boxed title style={frame code={
+\path[fill=tcbcolback!30!black]
+([yshift=-1mm,xshift=-1mm]frame.north west)
+arc[start angle=0,end angle=180,radius=1mm]
+([yshift=-1mm,xshift=1mm]frame.north east)
+arc[start angle=180,end angle=0,radius=1mm];
+\path[left color=Boxtittlecolor!60!black,right color=Boxtittlecolor!60!black,
+middle color=Boxtittlecolor!80!black]
+([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+-- (frame.south east) -- (frame.south west)
+-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+[sharp corners]-- cycle;
+},interior engine=empty,
+},
+fonttitle=\bfseries,
+title={$  \mathcal{Species}$},#1}
+
+%etymologybox
+\newtcolorbox{etymology}[1][]{enhanced,
+before skip=2mm,after skip=2mm,enlarge top by=10pt, enlarge bottom by=10pt,
+colback=orange!10,colframe=black!50,boxrule=0.5pt,breakable,
+attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+varwidth boxed title*=-3cm,
+boxed title style={frame code={
+\path[fill=tcbcolback!30!black]
+([yshift=-1mm,xshift=-1mm]frame.north west)
+arc[start angle=0,end angle=180,radius=1mm]
+([yshift=-1mm,xshift=1mm]frame.north east)
+arc[start angle=180,end angle=0,radius=1mm];
+\path[left color=Boxtittlecolor!60!black,right color=Boxtittlecolor!60!black,
+middle color=Boxtittlecolor!80!black]
+([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+-- (frame.south east) -- (frame.south west)
+-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+[sharp corners]-- cycle;
+},interior engine=empty,
+},
+fonttitle=\bfseries,
+title={$  \mathcal{Etymology}$},#1}
+
+%phylogenybox
+\newtcolorbox{phylogeny}[1][]{enhanced,
+before skip=2mm,after skip=2mm,enlarge top by=10pt, enlarge bottom by=10pt,
+colback=violet!10,colframe=black!50,boxrule=0.5pt,breakable,
+attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+varwidth boxed title*=-3cm,
+boxed title style={frame code={
+\path[fill=tcbcolback!30!black]
+([yshift=-1mm,xshift=-1mm]frame.north west)
+arc[start angle=0,end angle=180,radius=1mm]
+([yshift=-1mm,xshift=1mm]frame.north east)
+arc[start angle=180,end angle=0,radius=1mm];
+\path[left color=Boxtittlecolor!60!black,right color=Boxtittlecolor!60!black,
+middle color=Boxtittlecolor!80!black]
+([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+-- (frame.south east) -- (frame.south west)
+-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+[sharp corners]-- cycle;
+},interior engine=empty,
+},
+fonttitle=\bfseries,
+title={$  \mathcal{Phylogeny}$},#1}
+
+%diagnosisbox
+\newtcolorbox{diagnosis}[1][]{enhanced,
+before skip=2mm,after skip=2mm,enlarge top by=10pt, enlarge bottom by=10pt,
+colback=cyan!20,colframe=black!50,boxrule=0.5pt,breakable,
+attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+varwidth boxed title*=-3cm,
+boxed title style={frame code={
+\path[fill=tcbcolback!30!black]
+([yshift=-1mm,xshift=-1mm]frame.north west)
+arc[start angle=0,end angle=180,radius=1mm]
+([yshift=-1mm,xshift=1mm]frame.north east)
+arc[start angle=180,end angle=0,radius=1mm];
+\path[left color=Boxtittlecolor!60!black,right color=Boxtittlecolor!60!black,
+middle color=Boxtittlecolor!80!black]
+([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+-- (frame.south east) -- (frame.south west)
+-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+[sharp corners]-- cycle;
+},interior engine=empty,
+},
+fonttitle=\bfseries,
+title={$  \mathcal{Diagnosis}$},#1}
+
+%localitybox
+\newtcolorbox{locality}[1][]{enhanced,
+before skip=2mm,after skip=2mm,enlarge top by=10pt, enlarge bottom by=10pt,
+colback=lime!20,colframe=black!50,boxrule=0.5pt,breakable,
+attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+varwidth boxed title*=-3cm,
+boxed title style={frame code={
+\path[fill=tcbcolback!30!black]
+([yshift=-1mm,xshift=-1mm]frame.north west)
+arc[start angle=0,end angle=180,radius=1mm]
+([yshift=-1mm,xshift=1mm]frame.north east)
+arc[start angle=180,end angle=0,radius=1mm];
+\path[left color=Boxtittlecolor!60!black,right color=Boxtittlecolor!60!black,
+middle color=Boxtittlecolor!80!black]
+([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+-- (frame.south east) -- (frame.south west)
+-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+[sharp corners]-- cycle;
+},interior engine=empty,
+},
+fonttitle=\bfseries,
+title={$  \mathcal{Locality\ and\ Horizon}$},#1}
+
+%specimenbox
+\newtcolorbox{specimen}[1][]{enhanced,
+before skip=2mm,after skip=2mm,enlarge top by=10pt, enlarge bottom by=10pt,
+colback=green!10,colframe=black!50,boxrule=0.5pt,breakable,
+attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+varwidth boxed title*=-3cm,
+boxed title style={frame code={
+\path[fill=tcbcolback!30!black]
+([yshift=-1mm,xshift=-1mm]frame.north west)
+arc[start angle=0,end angle=180,radius=1mm]
+([yshift=-1mm,xshift=1mm]frame.north east)
+arc[start angle=180,end angle=0,radius=1mm];
+\path[left color=Boxtittlecolor!60!black,right color=Boxtittlecolor!60!black,
+middle color=Boxtittlecolor!80!black]
+([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+-- (frame.south east) -- (frame.south west)
+-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+[sharp corners]-- cycle;
+},interior engine=empty,
+},
+fonttitle=\bfseries,
+title={$  \mathcal{Specimen}$},#1}
+
+\begin{document}
+%----------------------------------------------------------------------%
+%set cover
+\begin{titlingpage} % Suppresses headers and footers on the title page
+    \centering % Centre all text
+	\setlength{\unitlength}{0.6\textwidth} % Set the width of the curly brackets above and below the titles
+    \newgeometry{margin = 0in}
+    \parindent=0pt
+    \includegraphics*[width=\pdfpagewidth]{cover.jpg} %cover picture
+    \vfill
+	{\color{LightGoldenrod}\resizebox*{\unitlength}{\baselineskip}{\rotatebox{90}{$\}$}}}\\[\baselineskip] % Top curly bracket
+	\textcolor{Sienna}{\textit{\Huge \textbf{Notes on Paleontology}}}\\[\baselineskip] % Title
+	{\color{RosyBrown}\Large \textbf{A Journey to the Past}}\\ % Subtitle or further description
+	{\color{LightGoldenrod}\resizebox*{\unitlength}{\baselineskip}{\rotatebox{-90}{$\}$}}} % Bottom curly bracket
+	\vfill % Whitespace between the title and the author name
+    {\Large\textbf{Richard Owen}}\\ % Author name
+    \vfill
+    \textbf{\Large\textit{Wir m\"{u}ssen wissen.~\\ Wir werden wissen.}}
+    \vfill
+    \restoregeometry
+\end{titlingpage}
+%----------------------------------------------------------------------%
+
+
+\tableofcontents
+\bibliographystyle{unsrtnat}
+
+\bibliography{Citation.bib}
+\end{document}
